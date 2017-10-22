@@ -55,12 +55,229 @@ But, to get started, why not use it to do the things you already know how to do?
 
 ---
 
-![a game](img/agame.png)
+![a game](img/agame.jpg)
 
 ---
 
 Let's talk about common stuff in Node and how to do it in Rust!
 
+---
+
+`node` is `cargo run`:
+
+```
+$ node index.js
+$ cargo run
+```
+
+---
+
+Rust is ahead-of-time (AOT) compiled.
+
+Node.js is interpreted.
+
+V8 has no *direct* comparison, becuase Rust does not have a runtime.
+
+---
+
+`libuv` is `mio`:
+
+```rust
+loop {
+  poll.poll(&mut events, None).unwrap();
+
+  for event in events.iter() {
+      match event.token() {
+          SERVER => {
+              let _ = server.accept();
+          }
+```
+
+Most Node programmers don't write `libuv`; most Rust programmers don't use
+`mio` directly either.
+
+---
+
+The Node runtime is Tokio, sort of:
+
+```rust
+let mut core = Core::new()?
+let handle = core.handle();
+let addr = "www.rust-lang.org".to_socket_addrs()?.next()?;
+
+let socket = TcpStream::connect(&addr, &handle);
+
+let request = socket.and_then(|socket| {
+    tokio_io::io::write_all(socket, "DATA HERE".as_bytes());
+});
+
+core.run(request)?;
+```
+
+Event loop is explicit! This may change in the future.
+
+---
+
+Promises are Futures:
+
+```
+// in Node
+some_promise.then(foo).then(bar)
+
+// in Rust
+some_future.and_then(foo).and_then(bar)
+```
+
+There are technical differences but the core concept is the same.
+
+---
+
+npm is Cargo, packages are crates, and the registry is `crates.io`:
+
+```
+$ npm install
+$ cargo build
+```
+
+![crates.io](img/cratesio.png)
+
+We do the "small modules philosophy" to *some* degree.
+
+---
+
+`createServer` is `simple-server`:
+
+```rust
+extern crate simple_server;
+
+use simple_server::Server;
+
+fn main() {
+    let host = "127.0.0.1";
+    let port = "7878";
+
+    let server = Server::new(|request, mut response| {
+        println!("Request received. {} {}", request.method(), request.uri());
+        Ok(response.body("Hello Rust!".as_bytes())?)
+    });
+
+    server.listen(host, port);
+}
+```
+
+---
+
+Express is... well, will be ✨
+
+COMING SOON!
+
+---
+
+There are also lots of other web frameworks:
+
+* Rocket
+* gotham
+* rouille
+* Shio
+* Iron
+
+No clear winners in this space yet!
+
+---
+
+`request` is... `reqwest`:
+
+```rust
+let mut resp = reqwest::get("https://www.rust-lang.org")?;
+
+let mut content = String::new();
+resp.read_to_string(&mut content);
+
+// This will POST a body of `foo=bar&baz=quux`
+let params = [("foo", "bar"), ("baz", "quux")];
+let client = reqwest::Client::new();
+let res = client.post("http://httpbin.org/post")
+    .form(&params)
+    .send()?;
+```
+
+---
+
+`mocha` and `chai` are built in:
+
+```rust
+#[test]
+fn testing_testing() {
+    assert!(true);
+
+    assert_eq!(5, 5);
+
+    assert_ne!("Hello", "world"); // <- added by @ag_dubs!
+}
+```
+
+---
+
+`lodash` is... built-in:
+
+```
+for i in 12..buffer.len() {
+    let prediction = coefficients.iter()
+        .zip(&buffer[i - 12..i])
+        .map(|(&c, &s)| c * s as i64)
+        .sum::<i64>() >> qlp_shift;
+    let delta = buffer[i];
+    buffer[i] = prediction as i32 + delta;
+}
+```
+
+---
+
+Codepens are the Rust Playground:
+
+[http://play.rust-lang.org](http://play.rust-lang.org)
+
+---
+
+`eslint`/`standard` are `rustfmt` and `clippy`:
+
+```
+$ cargo fmt
+$ cargo clippy
+```
+
+---
+
+Rust has conferences!
+
+* RustConf
+* RustFest
+* Rust Belt Rust
+
+Not nearly as big as JavaScript... yet!
+
+---
+
+TC39/Node Foundation are the Rust teams:
+
+* Core team + 9 others; Core is *not* the TSC
+* Explicit moderation team + Code of Conduct since Day 1
+* Rust has no foundation
+
+---
+
+Getting into Rust is easier than you might think!
+
+Programming is, at the end of the day, programming. Rust is very much
+not JavaScript but your skills are still useful in Rust-land.
+
+We very much want you all to come try out Rust!
+
+---
+
+# Thanks!
+
+@steveklabnik
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js">
