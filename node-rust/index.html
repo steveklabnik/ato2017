@@ -108,7 +108,7 @@ class: middle, left
 
 ```rust
 loop {
-  poll.poll(&mut events, None).unwrap();
+  poll.poll(&amp;mut events, None).unwrap();
 
   for event in events.iter() {
       match event.token() {
@@ -131,7 +131,7 @@ let mut core = Core::new()?
 let handle = core.handle();
 let addr = "www.rust-lang.org".to_socket_addrs()?.next()?;
 
-let socket = TcpStream::connect(&addr, &handle);
+let socket = TcpStream::connect(&amp;addr, &amp;handle);
 
 let request = socket.and_then(|socket| {
     tokio_io::io::write_all(socket, "DATA HERE".as_bytes());
@@ -233,13 +233,13 @@ class: middle, left
 let mut resp = reqwest::get("https://www.rust-lang.org")?;
 
 let mut content = String::new();
-resp.read_to_string(&mut content);
+resp.read_to_string(&amp;mut content);
 
-// This will POST a body of `foo=bar&baz=quux`
+// This will POST a body of `foo=bar&amp;baz=quux`
 let params = [("foo", "bar"), ("baz", "quux")];
 let client = reqwest::Client::new();
 let res = client.post("http://httpbin.org/post")
-    .form(&params)
+    .form(&amp;params)
     .send()?;
 ```
 
@@ -280,8 +280,8 @@ class: middle, left
 ```rust
 for i in 12..buffer.len() {
     let prediction = coefficients.iter()
-        .zip(&buffer[i - 12..i])
-        .map(|(&c, &s)| c * s as i64)
+        .zip(&amp;buffer[i - 12..i])
+        .map(|(&amp;c, &amp;s)| c * s as i64)
         .sum::<i64>() >> qlp_shift;
     let delta = buffer[i];
     buffer[i] = prediction as i32 + delta;
