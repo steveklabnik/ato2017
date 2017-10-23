@@ -3,19 +3,8 @@
   <head>
     <title>X in Node is Y in Rust: A guide to Rust for Javascript developers</title>
     <meta charset="utf-8">
-    <style>
-      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
-      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
-      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
-
-      body { font-family: 'Droid Serif'; }
-      h1, h2, h3 {
-        font-family: 'Yanone Kaffeesatz';
-        font-weight: normal;
-      }
-      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
-    </style>
-    <link href="styles/custom.css" rel="stylesheet"/>
+    <link href="./fonts/Fira/fira.css" rel="stylesheet"/>
+    <link href="./styles/custom.css" rel="stylesheet"/>
   </head>
   <body>
     <textarea id="source">
@@ -25,9 +14,9 @@ class: center, middle
 # X in Node is Y in Rust
 ## A guide to Rust for Javascript developers
 
-By @steveklabnik
+#### By @steveklabnik
 
-(slides made extra awesome by @ag_dubs)
+#### (slides made extra awesome by @ag_dubs)
 
 ---
 class: center, middle
@@ -39,24 +28,24 @@ class: center, middle
 ---
 class: center, middle
 
-# Node.js is...
+![node turtle](./img/node-turtle.png)
 
 ---
 class: center, middle
 
-# Rust is...
+![ferris crab](./img/ferris.png)
 
 ---
 class: left, middle
 
-> Rust is cool, but I don't know what to use it for.
+# "Rust is cool, but I don't know what to use it for."
 
 ---
 class: center, middle
 
-Rust can do many things, including some things JavaScript cannot do.
+#### Rust can do many things, including some things JavaScript cannot do.
 
-### But, to get started, why not use it to do the things you already know how to do?
+## But, to get started, why not use it to do the things you already know how to do?
 
 ---
 class: center, middle
@@ -71,21 +60,16 @@ class: center, middle
 ---
 class: center, middle
 
-### Learning by analogy is powerful.
+# Learning by analogy is powerful.
 
 ---
 class: middle, left
 
-> Let's replace Node with Rust!
+# "Let's replace Node with Rust!"
 
-.author[you maybe?]
+--
 
----
-class: middle, left
-
-> Let's replace Node with Rust!
-
-.author[def not me]
+.no[![no](./img/no.gif)]
 
 ---
 class: center, middle
@@ -97,9 +81,9 @@ class: left, middle
 
 # Running Applications
 
-`node` is `cargo run`:
+#### `node` is `cargo run`:
 
-```
+```bash
 $ node index.js
 $ cargo run
 ```
@@ -109,18 +93,18 @@ class: middle, left
 
 # Execution Model
 
-Rust is ahead-of-time (AOT) compiled.
+#### Rust is ahead-of-time (AOT) compiled.
 
-Node.js is interpreted.
+#### Node.js is interpreted.
 
-V8 has no *direct* comparison, because Rust does not have a runtime.
+#### V8 has no *direct* comparison, because Rust does not have a runtime.
 
 ---
 class: middle, left
 
 # Evented I/O
 
-`libuv` is `mio`:
+#### `libuv` is `mio`:
 
 ```rust
 loop {
@@ -133,15 +117,14 @@ loop {
           }
 ```
 
-Most Node programmers don't write `libuv`; most Rust programmers don't use
-`mio` directly either.
+#### Most Node programmers don't write `libuv`; most Rust programmers don't use `mio` directly either.
 
 ---
 class: middle, left
 
 # Runtime and Event Loop
 
-The Node runtime is Tokio, sort of:
+#### The Node runtime is Tokio, sort of:
 
 ```rust
 let mut core = Core::new()?
@@ -157,16 +140,16 @@ let request = socket.and_then(|socket| {
 core.run(request)?;
 ```
 
-Event loop is explicit! This may change in the future.
+#### Event loop is explicit! This may change in the future.
 
 ---
 class: middle, left
 
 # Async
 
-Promises are Futures:
+#### Promises are Futures:
 
-```
+```js
 // in Node
 some_promise.then(foo).then(bar)
 
@@ -174,30 +157,30 @@ some_promise.then(foo).then(bar)
 some_future.and_then(foo).and_then(bar)
 ```
 
-There are technical differences but the core concept is the same.
+#### There are technical differences but the core concept is the same.
 
 ---
 class: middle, left
 
 # Package Ecosystem
 
-npm is Cargo, packages are crates, and the registry is `crates.io`:
+#### npm is Cargo, packages are crates, and the registry is `crates.io`:
 
-```
+```bash
 $ npm install
 $ cargo build
 ```
 
 ![crates.io](img/cratesio.png)
 
-We do the "small modules philosophy" to *some* degree.
+#### We do the "small modules philosophy" to *some* degree.
 
 ---
 class: middle, left
 
 # Web Server
 
-`createServer` is `simple-server`:
+#### `createServer` is `simple-server`:
 
 ```rust
 extern crate simple_server;
@@ -229,7 +212,7 @@ class: middle, left
 
 # Other Web Frameworks
 
-There are also lots of other web frameworks:
+#### There are also lots of other web frameworks:
 
 * Rocket
 * gotham
@@ -237,14 +220,14 @@ There are also lots of other web frameworks:
 * Shio
 * Iron
 
-No clear winners in this space yet!
+#### No clear winners in this space yet!
 
 ---
 class: middle, left
 
 # HTTP
 
-`request` is... `reqwest`:
+#### `request` is... `reqwest`:
 
 ```rust
 let mut resp = reqwest::get("https://www.rust-lang.org")?;
@@ -265,7 +248,7 @@ class: middle, left
 
 # Testing and Asserts
 
-`mocha` and `chai` are built in:
+#### `mocha` and `chai` are built in:
 
 ```rust
 #[test]
@@ -292,9 +275,9 @@ class: middle, left
 
 # std Library
 
-`lodash` is... built-in:
+#### `lodash` is... built-in:
 
-```
+```rust
 for i in 12..buffer.len() {
     let prediction = coefficients.iter()
         .zip(&buffer[i - 12..i])
@@ -310,7 +293,7 @@ class: middle, left
 
 # Interactive Shells
 
-Codepens are the Rust Playground:
+#### Codepens are the Rust Playground:
 
 [http://play.rust-lang.org](http://play.rust-lang.org)
 
@@ -319,9 +302,9 @@ class: middle, left
 
 # Styles and Lints
 
-`eslint`/`standard` are `rustfmt` and `clippy`:
+#### `eslint`/`standard` are `rustfmt` and `clippy`:
 
-```
+```bash
 $ cargo fmt
 $ cargo clippy
 ```
@@ -331,20 +314,20 @@ class: middle, left
 
 # Conferences
 
-Rust has conferences!
+#### Rust has conferences!
 
 * RustConf
 * RustFest
 * Rust Belt Rust
 
-Not nearly as big as JavaScript... yet!
+#### Not nearly as big as JavaScript... yet!
 
 ---
 class: middle, left
 
 # Governance
 
-TC39/Node Foundation are the Rust teams:
+#### TC39/Node Foundation are the Rust teams:
 
 * Core team + 9 others; Core is *not* the TSC
 * Explicit moderation team + Code of Conduct since Day 1
@@ -355,7 +338,7 @@ class: middle, left
 
 ## Rust and Node together
 
-You can extend Node *with* Rust via Neon!
+#### You can extend Node *with* Rust via Neon!
 
 ```rust
 fn hello(call: Call) → JsResult<JsString> {
@@ -403,7 +386,7 @@ class: middle, center
 
 # Thanks!
 
-@steveklabnik
+### @steveklabnik
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js">
