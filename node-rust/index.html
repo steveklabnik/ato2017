@@ -59,6 +59,16 @@ But, to get started, why not use it to do the things you already know how to do?
 
 ---
 
+Node and Rust are good at different things!
+
+---
+
+This isn't about *replacing* Node with Rust.
+
+This is about learning new things.
+
+---
+
 Let's talk about common stuff in Node and how to do it in Rust!
 
 ---
@@ -263,6 +273,19 @@ TC39/Node Foundation are the Rust teams:
 * Core team + 9 others; Core is *not* the TSC
 * Explicit moderation team + Code of Conduct since Day 1
 * Rust has no foundation
+
+---
+
+You can extend Node *with* Rust via Neon!
+
+```rust
+fn hello(call: Call) → JsResult<JsString> {
+    let val = JsString::new(call.scope, "hello, Node")
+                       .unwrap();
+    // ...
+    Ok(val)
+}
+```
 
 ---
 
