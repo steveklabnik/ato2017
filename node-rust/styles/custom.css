@@ -9,27 +9,35 @@ body {
 
 .remark-slide-content {
   background-color: black;
-  background-image: url(../img/space.jpg);
+  background-image: url(../img/space2.jpg);
   background-size: cover;
 }
 
-img {
-  width: 100%;
+h1, h2, h3, h4, ul {
+  padding: 10px;
+  background-color: rgba(102,51,153, 0.6);
 }
 
-blockquote {
-  font-size: 2em;
-  font-style: italic;
-}
-
-blockquote::before {
-  content: '“';
+.no {
+  background: none;
   position: absolute;
-  display: inline-block;
-  margin-left: -2.1em;
-  width: 2em;
-  text-align: right;
-  font-size: 90px;
+  top: -112px;
+  left: 0;
+}
+
+.no img {
+  background: none;
+}
+
+
+a, a:visited, a:hover, a:active {
+  color: #008B8B;
+}
+
+img {
+  padding: 10px;
+  background-color: rgba(102,51,153, 0.6);
+  width: 100%;
 }
 
 /* author */
@@ -37,8 +45,6 @@ blockquote::before {
   font-size: 35px;
   text-align: right;
   margin-right: 50px;
-}
-
-.author::before {
-  content: '—';
+  padding: 10px;
+  background-color: rgba(102,51,153, 0.6);
 }
