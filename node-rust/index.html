@@ -15,6 +15,7 @@
       }
       .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
     </style>
+    <link href="./styles/custom.css" rel="stylesheet"/>
   </head>
   <body>
     <textarea id="source">
@@ -29,49 +30,72 @@ By @steveklabnik
 (slides made extra awesome by @ag_dubs)
 
 ---
+class: center, middle
 
-This talk is a *high-level guide* to various projects in the *Rust*
-ecosystem, drawing comparisons to the *Node.js* ecosystem.
+### This talk is a *high-level guide* to various projects in the *Rust* ecosystem,
 
----
-
-Learning by analogy is powerful.
+## drawing comparisons to the *Node.js* ecosystem.
 
 ---
+class: center, middle
 
-I hear lots of JavaScript developers say
+# Node.js is...
+
+---
+class: center, middle
+
+# Rust is...
+
+---
+class: left, middle
 
 > Rust is cool, but I don't know what to use it for.
 
 ---
+class: center, middle
 
 Rust can do many things, including some things JavaScript cannot do.
 
-But, to get started, why not use it to do the things you already know how to do?
+### But, to get started, why not use it to do the things you already know how to do?
 
 ---
+class: center, middle
 
 ![cave adventure](img/cave.png)
 
 ---
+class: center, middle
 
 ![a game](img/agame.jpg)
 
 ---
+class: center, middle
 
-Node and Rust are good at different things!
-
----
-
-This isn't about *replacing* Node with Rust.
-
-This is about learning new things.
+### Learning by analogy is powerful.
 
 ---
+class: middle, left
 
-Let's talk about common stuff in Node and how to do it in Rust!
+> Let's replace Node with Rust!
+
+.author[you maybe?]
 
 ---
+class: middle, left
+
+> Let's replace Node with Rust!
+
+.author[def not me]
+
+---
+class: center, middle
+
+### Let's talk about common stuff in Node and how to do it in Rust!
+
+---
+class: left, middle
+
+# Running Applications
 
 `node` is `cargo run`:
 
@@ -81,14 +105,20 @@ $ cargo run
 ```
 
 ---
+class: middle, left
+
+# Execution Model
 
 Rust is ahead-of-time (AOT) compiled.
 
 Node.js is interpreted.
 
-V8 has no *direct* comparison, becuase Rust does not have a runtime.
+V8 has no *direct* comparison, because Rust does not have a runtime.
 
 ---
+class: middle, left
+
+# Evented I/O
 
 `libuv` is `mio`:
 
@@ -107,6 +137,9 @@ Most Node programmers don't write `libuv`; most Rust programmers don't use
 `mio` directly either.
 
 ---
+class: middle, left
+
+# Runtime and Event Loop
 
 The Node runtime is Tokio, sort of:
 
@@ -127,6 +160,9 @@ core.run(request)?;
 Event loop is explicit! This may change in the future.
 
 ---
+class: middle, left
+
+# Async
 
 Promises are Futures:
 
@@ -141,6 +177,9 @@ some_future.and_then(foo).and_then(bar)
 There are technical differences but the core concept is the same.
 
 ---
+class: middle, left
+
+# Package Ecosystem
 
 npm is Cargo, packages are crates, and the registry is `crates.io`:
 
@@ -154,6 +193,9 @@ $ cargo build
 We do the "small modules philosophy" to *some* degree.
 
 ---
+class: middle, left
+
+# Web Server
 
 `createServer` is `simple-server`:
 
@@ -176,12 +218,16 @@ fn main() {
 ```
 
 ---
+class: middle, left
 
-Express is... well, will be ✨
+# Express is... well, will be ✨
 
-COMING SOON!
+### COMING SOON!
 
 ---
+class: middle, left
+
+# Other Web Frameworks
 
 There are also lots of other web frameworks:
 
@@ -194,6 +240,9 @@ There are also lots of other web frameworks:
 No clear winners in this space yet!
 
 ---
+class: middle, left
+
+# HTTP
 
 `request` is... `reqwest`:
 
@@ -212,6 +261,9 @@ let res = client.post("http://httpbin.org/post")
 ```
 
 ---
+class: middle, left
+
+# Testing and Asserts
 
 `mocha` and `chai` are built in:
 
@@ -227,6 +279,18 @@ fn testing_testing() {
 ```
 
 ---
+class: middle, center
+
+# the Rust standard library is small...
+
+--
+
+# ... but the JavaScript one is smaller
+
+---
+class: middle, left
+
+# std Library
 
 `lodash` is... built-in:
 
@@ -242,12 +306,18 @@ for i in 12..buffer.len() {
 ```
 
 ---
+class: middle, left 
+
+# Interactive Shells
 
 Codepens are the Rust Playground:
 
 [http://play.rust-lang.org](http://play.rust-lang.org)
 
 ---
+class: middle, left
+
+# Styles and Lints
 
 `eslint`/`standard` are `rustfmt` and `clippy`:
 
@@ -257,6 +327,9 @@ $ cargo clippy
 ```
 
 ---
+class: middle, left
+
+# Conferences
 
 Rust has conferences!
 
@@ -267,6 +340,9 @@ Rust has conferences!
 Not nearly as big as JavaScript... yet!
 
 ---
+class: middle, left
+
+# Governance
 
 TC39/Node Foundation are the Rust teams:
 
@@ -275,6 +351,9 @@ TC39/Node Foundation are the Rust teams:
 * Rust has no foundation
 
 ---
+class: middle, left
+
+## Rust and Node together
 
 You can extend Node *with* Rust via Neon!
 
@@ -288,15 +367,39 @@ fn hello(call: Call) → JsResult<JsString> {
 ```
 
 ---
+class: middle, center
 
-Getting into Rust is easier than you might think!
-
-Programming is, at the end of the day, programming. Rust is very much
-not JavaScript but your skills are still useful in Rust-land.
-
-We very much want you all to come try out Rust!
+### Rust and Node are ripe for comparision because they are both
+# Empowering Technologies
 
 ---
+class: middle, center
+
+### Rust is not just empowering...
+# it's Transformative
+
+---
+class: middle, center
+
+### Learning Rust isn't about simply moving your skills from one place to another
+# ... but also about growing and deepening them
+
+---
+class: middle, center
+
+# PLUG YOUR WASM TALK HERE
+
+---
+class: middle, left
+
+# Resources for learning Rust
+
+- Rust Bridge
+- Exercism.io
+- The Book (by you duh)
+
+---
+class: middle, center
 
 # Thanks!
 
