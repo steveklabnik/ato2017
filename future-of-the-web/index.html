@@ -23,9 +23,9 @@ class: center, middle
 
 # A vision of the future for the Web Platform
 
-By @steveklabnik
+## By @steveklabnik
 
-(slides made extra awesome by @ag_dubs)
+### (slides made extra awesome by @ag_dubs)
 
 ---
 class: center, middle
@@ -75,7 +75,7 @@ class: center, middle
 ---
 class: center, middle
 
-The core technologies of the web were set 22 years ago.
+## The core technologies of the web were set 22 years ago.
 
 ---
 class: center, middle
@@ -89,24 +89,24 @@ class: center, middle
 ---
 class: center, middle
 
-More stuff *has* happened, but mostly *refinement*, rather than *revolution*.
+## More stuff *has* happened, but mostly *refinement*, rather than *revolution*.
 
 ---
 class: center, middle
 
-There is a precursor, though: the rediscovery of JavaScript.
+## There is a precursor, though: the rediscovery of JavaScript.
 
 ---
 class: center, middle
 
 # What is "the web platform"?
 
-It should be "the web *application* platform."
+## It should be "the web *application* platform."
 
 ---
 class: center, middle
 
-Platforms consist of:
+# Platforms consist of:
 
 1. An ISA (instruction set architecture)
 2. A runtime environment and its API
@@ -141,19 +141,19 @@ class: center, middle
 ---
 class: center, middle
 
-Other platforms were local, then networked.
+## Other platforms were local, then networked.
 
-The web platform is networked, and only now becoming local.
-
----
-class: center, middle
-
-The browser was a *viewport* into an *application on the server*.
+## The web platform is networked, and only now becoming local.
 
 ---
 class: center, middle
 
-This limits the kind of applications that we can build on the web
+# The browser was a *viewport* into an *application on the server*.
+
+---
+class: center, middle
+
+# This limits the kind of applications that we can build on the web
 platform.
 
 ---
@@ -164,7 +164,7 @@ class: center, middle
 ---
 class: center, middle
 
-Further developing the web platform's capabilities requires
+## Further developing the web platform's capabilities requires
 filling in the missing pieces.
 
 ---
@@ -179,16 +179,16 @@ class: center, middle
 ---
 class: center, middle
 
-JavaScript as ISA?
+# JavaScript as ISA?
 
-Sort of, but not *really*.
+## Sort of, but not *really*.
 
 ---
 class: center, middle
 
-JavaScript was not designed for this task.
+# JavaScript was not designed for this task.
 
-"Compile to JS" works, but has significant drawbacks.
+## "Compile to JS" works, but has significant drawbacks.
 
 ---
 class: center, middle
@@ -210,25 +210,25 @@ class: center, middle
 2. Runtime: JavaScript + Platform APIs
 3. Tooling: So so so so so many
 
-Spec: 165 pages
+### Spec: 165 pages
 
 ---
 class: center, middle
 
-Previously, the web could only handle *high level* tasks.
+## Previously, the web could only handle *high level* tasks.
 
-With wasm, the web platform can handle *low level* tasks.
+## With wasm, the web platform can handle *low level* tasks.
 
 ---
 class: center, middle
 
-The Web Platform is closing in on application spaces previously only possible
+## The Web Platform is closing in on application spaces previously only possible
 on other platforms.
 
 ---
 class: center, middle
 
-### Aside: isn't this Java Applets?
+### Aside: isn't this Java Applets? NaCL?
 
 # NO
 
@@ -239,7 +239,7 @@ class: center, middle
 ---
 class: center, middle
 
-It's not just about wasm, it's also about the platform expanding:
+## It's not just about wasm, it's also about the platform expanding:
 
 * WebGL
 * WebAudio
@@ -248,7 +248,7 @@ It's not just about wasm, it's also about the platform expanding:
 ---
 class: center, middle
 
-Soon, "web application" does not need to be synonymous with "networked
+### Soon, "web application" does not need to be synonymous with "networked
 application" or "web page" or anything else we associate with the web
 platform today.
 
@@ -262,32 +262,32 @@ TODO
 ---
 class: center, middle
 
-SPAs shifted *some* of the application to the client.
+## SPAs shifted *some* of the application to the client.
 
-This work enables *all* of the application to be on the client.
-
----
-class: center, middle
-
-Why is this useful?
-
-Universal, cross-platform applications.
-
-"no install neccesary"
+## This work enables *all* of the application to be on the client.
 
 ---
 class: center, middle
 
-What *is* WebAssembly, anyway?
+# Why is this useful?
 
-Extremely misunderstood 🙁
+## Universal, cross-platform applications.
+
+## "no install neccesary"
+
+---
+class: center, middle
+
+# What *is* WebAssembly, anyway?
+
+## Extremely misunderstood 🙁
 
 ---
 class: center, middle
 
 # Factorial
 
-Wasm is a compact, binary format:
+## Wasm is a compact, binary format:
 
 ```text
 20 00 42 00 51 04 7e 42 01 05 20
@@ -299,9 +299,84 @@ class: center, middle
 
 # Factorial
 
-It also has a text format, so you can "view source" easily.
+## It also has a text format, so you can "view source" easily.
 
 [http://ast.run/](http://ast.run/)
+
+---
+class: center, middle
+
+## It's designed to be small, efficient, and integrate with existing JS VMs.
+
+---
+class: center, middle
+
+## It's *not* designed to replace JavaScript
+
+---
+class: center, middle
+
+## It has limitations, such as not being able to access the DOM
+
+---
+class: center, middle
+
+## It has no GC integration
+
+### This means, C, C++, and Rust
+
+#### JavaScript does *not* compile to wasm
+
+---
+class: center, middle
+
+## You can do cool things!
+
+![Rust in the browser](img/rustinthebrowser.png)
+
+---
+class: center, middle
+
+## You can do cool things!
+
+[https://buddhabrot.paulg.fr/](https://buddhabrot.paulg.fr/)
+
+---
+class: center, middle
+
+## Traditional web applications will always be a thing.
+
+### This is about *expansion*, not *replacement*.
+
+---
+class: center, middle
+
+# The Birth &amp; Death of JavaScript
+
+## [A talk by Gary Bernhardt from PyCon 2014](https://www.destroyallsoftware.com/talks/the-birth-and-death-of-javascript)
+
+---
+class: center, middle
+
+## Bootstrapping 
+
+* Cross compile your shell to the browser, via wasm
+* Cross compile your compiler to the browser, via wasm
+* Compile your shell in the browser via the compiler you just cross-compiled
+
+---
+class: center, middle
+
+### Soon, "web application" does not need to be synonymous with "networked
+application" or "web page" or anything else we associate with the web
+platform today.
+
+---
+class: center, middle
+
+# Thanks!
+
+## @steveklabnik
 
 
     </textarea>
